@@ -1,73 +1,66 @@
-# ArcadiaOS Project
+# AnduinOS
 
-**ArcadiaOS** is an experimental, modular operating system project designed to serve as a playground for new systems programming concepts and language development. It aims to combine modern technologies and languages to build a secure, extensible, and lightweight OS.
+[![GPL licensed](https://img.shields.io/badge/license-GPL-blue.svg)](https://gitlab.aiursoft.cn/anduin/anduinos/-/blob/1.3/LICENSE)
+[![Discussions](https://img.shields.io/badge/discussions-join-blue)](https://github.com/Anduin2017/AnduinOS/discussions)
+[![Website](https://img.shields.io/website?url=https%3A%2F%2Fwww.anduinos.com%2F)](https://www.anduinos.com/)
+[![ManHours](https://manhours.aiursoft.cn/r/gitlab.aiursoft.cn/anduin/anduinos.svg)](https://gitlab.aiursoft.cn/anduin/anduinos/-/commits/1.3?ref_type=heads)
 
----
+<img align="right" width="100" height="100" src="./src/mods/30-gnome-extension-arcmenu-patch/logo.svg">
 
-## Project Vision
+AnduinOS is a custom Ubuntu-based Linux distribution that aims to facilitate developers transitioning from Windows to Linux by maintaining familiar operational habits and workflows.
 
-ArcadiaOS envisions a harmonious and minimalistic operating system that can evolve with the development of custom languages such as **Luma**, **Lumo**, and **Wave**, while leveraging mature and reliable technologies in the interim:
+[Download AnduinOS](https://www.anduinos.com/)
 
-- **Rust** for the kernel and runtime components, ensuring memory safety and performance  
-- **Assembly** for low-level bootstrapping and hardware initialization  
-- **Lua** for the user shell and scripting environment, providing flexibility and ease of use  
-- **WebAssembly (WASM)** via the Wave ecosystem for sandboxed UI and application extensions
+![Screenshot](./screenshot.png)
 
-This hybrid approach allows rapid prototyping and continuous integration of new language technologies as they mature.
+## How to build
 
----
+You MUST be using an `AMD64` architecture to build AnduinOS.
 
-## Key Components
+To edit the build parameters, modify the `./src/args.sh` file.
 
-- **Bootloader:** Written in Assembly to initialize hardware and load the kernel  
-- **Kernel:** Developed in Rust, responsible for process management, memory, and hardware abstraction  
-- **Shell and Scripting:** Lua interpreter embedded for command-line interface and system scripting  
-- **UI and Extensions:** Applications running in WebAssembly to provide modern, secure, and portable interfaces
+The first two parts of the `TARGET_BUILD_VERSION` MUST be the same as the git branch name. For example:
 
----
+```bash
+TARGET_BUILD_VERSION="1.3.0"
+```
 
-## Goals
+Then the git branch name MUST be `1.3`.
 
-- Create a fully functional minimal OS kernel with essential system services  
-- Support extensible scripting and user interfaces through Lua and WASM  
-- Develop and eventually integrate the custom Luma, Lumo, and Wave languages as first-class citizens of the system  
-- Foster an open and modular architecture to encourage experimentation and innovation
+To build the OS, run the following command:
 
----
+```bash
+cd ./src
+./build.sh
+```
 
-## Getting Started
+That's it. The built file will be an ISO file in the `./src/dist` directory.
 
-This project is in early stages. Contributions and ideas are welcome!
+Simply mount the built ISO file to an virtual machine, and you can start installing it.
 
-### Prerequisites
+## Document
 
-- Rust toolchain  
-- NASM or equivalent assembler  
-- Lua interpreter (for scripting tests)  
-- WASM toolchain (e.g., wasm-pack) for building Wave apps
-
----
-
-## Roadmap
-
-- [ ] Develop Assembly bootloader  
-- [ ] Implement Rust-based kernel core  
-- [ ] Embed Lua interpreter for shell and scripting  
-- [ ] Integrate WebAssembly runtime for UI and apps  
-- [ ] Design APIs for seamless language interoperability  
-- [ ] Gradually port components to Luma, Lumo, and Wave
-
----
-
-## Contact
-
-Created by [Liam Von Astoria].  
-Feel free to reach out for collaboration or questions!
-
----
+[Read the document](https://docs.anduinos.com/)
 
 ## License
 
-MIT License — see [LICENSE](LICENSE) for details.
+This project is licensed under the GNU GENERAL PUBLIC LICENSE - see the [LICENSE](LICENSE) file for details
 
----
+The open-source software included in AnduinOS is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY.
+
+[List of open-source software included in AnduinOS](OSS.md)
+
+## Support
+
+For community support and discussion, please join our [AnduinOS Discussions](https://github.com/Anduin2017/AnduinOS/discussions).
+
+For bug reports and feature requests, please use the [Issues](https://github.com/Anduin2017/AnduinOS/issues) page.
+
+<!-- Planned future work:
+
+* ARM support.
+* WSL support.
+* Docker container support.
+* Customized installer instead of ubiquity.
+* Customized apt source with our own override.
+* Customized kernel with our own override. -->
