@@ -6,9 +6,9 @@ set -e                  # exit on error
 set -o pipefail         # exit on pipeline error
 set -u                  # treat unset variable as error
 export DEBIAN_FRONTEND=noninteractive
-export LATEST_VERSION="1.3.3"
+export LATEST_VERSION="1.0.0"  # Latest version of ArcadiaOS
 export CODE_NAME="plucky"
-export OS_ID="AnduinOS"
+export OS_ID="ArcadiaOS"
 export CURRENT_VERSION=$(cat /etc/lsb-release | grep DISTRIB_RELEASE | cut -d "=" -f 2)
 
 #==========================
@@ -53,10 +53,10 @@ function judge() {
   fi
 }
 
-function ensureCurrentOsAnduinOs() {
-    # Ensure the current OS is AnduinOS
-    if ! grep -q "DISTRIB_ID=AnduinOS" /etc/lsb-release; then
-        print_error "This script can only be run on AnduinOS."
+function ensureCurrentOsArcadiaOs() {
+    # Ensure the current OS is ArcadiaOS
+    if ! grep -q "DISTRIB_ID=ArcadiaOS" /etc/lsb-release; then
+        print_error "This script can only be run on ArcadiaOS."
         exit 1
     fi
 }
@@ -321,7 +321,7 @@ function patch_dash_to_panel() {
     judge "Apply new panel layout patch"
 
     # --- Verify success ---
-    if ! grep -q "AnduinOS custom default panel layout" "$TARGET_FILE"; then
+    if ! grep -q "ArcadiaOS custom default panel layout" "$TARGET_FILE"; then
         echo "[ERROR] Replacement verification failed" >&2
         exit 1
     fi
@@ -359,30 +359,30 @@ function applyLsbRelease() {
 
     # Update /etc/os-release
     sudo bash -c "cat > /etc/os-release <<EOF
-PRETTY_NAME=\"AnduinOS $LATEST_VERSION\"
-NAME=\"AnduinOS\"
+PRETTY_NAME=\"ArcadiaOS $LATEST_VERSION\"
+NAME=\"ArcadiaOS\"
 VERSION_ID=\"$LATEST_VERSION\"
 VERSION=\"$LATEST_VERSION ($CODE_NAME)\"
 VERSION_CODENAME=$CODE_NAME
 ID=ubuntu
 ID_LIKE=debian
-HOME_URL=\"https://www.anduinos.com/\"
-SUPPORT_URL=\"https://github.com/Anduin2017/AnduinOS/discussions\"
-BUG_REPORT_URL=\"https://github.com/Anduin2017/AnduinOS/issues\"
+HOME_URL=\"https://www.arcadia-os.com/\"
+SUPPORT_URL=\"https://github.com/liamvnastoria/arcadia-os/discussions\"
+BUG_REPORT_URL=\"https://github.com/liamvnastoria/arcadia-os/issues\"
 PRIVACY_POLICY_URL=\"https://www.ubuntu.com/legal/terms-and-policies/privacy-policy\"
 UBUNTU_CODENAME=$CODE_NAME
 EOF"
 
     # Update /etc/lsb-release
     sudo bash -c "cat > /etc/lsb-release <<EOF
-DISTRIB_ID=AnduinOS
+DISTRIB_ID=ArcadiaOS
 DISTRIB_RELEASE=$LATEST_VERSION
 DISTRIB_CODENAME=$CODE_NAME
-DISTRIB_DESCRIPTION=\"AnduinOS $LATEST_VERSION\"
+DISTRIB_DESCRIPTION=\"ArcadiaOS $LATEST_VERSION\"
 EOF"
 
     # Update /etc/issue
-    echo "AnduinOS ${LATEST_VERSION} \n \l
+    echo "ArcadiaOS ${LATEST_VERSION} \n \l
 " | sudo tee /etc/issue
 
     # Update /usr/lib/os-release
@@ -392,8 +392,8 @@ EOF"
 function main() {
     print_ok "Current version is: ${CURRENT_VERSION}. Checking for updates..."
 
-    # Ensure the current OS is AnduinOS
-    ensureCurrentOsAnduinOs
+    # Ensure the current OS is ArcadiaOS
+    ensureCurrentOsArcadiaOs
 
     # Compare current version with latest version
     if [ "$CURRENT_VERSION" == "$LATEST_VERSION" ]; then

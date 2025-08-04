@@ -1,8 +1,9 @@
 #!/bin/bash
 
-#==========================
-# Set up the environment
-#==========================
+#======================================
+# Set up the environment for ArcadiaOS
+#======================================
+
 set -e                  # exit on error
 set -o pipefail         # exit on pipeline error
 set -u                  # treat unset variable as error

@@ -76,14 +76,14 @@ export BUILD_UBUNTU_MIRROR="http://mirror.aiursoft.cn/ubuntu/"
 
 # This is the name of the target OS.
 # Must be lowercase without special characters and spaces
-export TARGET_NAME="anduinos"
+export TARGET_NAME="arcadiaos"
 
 # This is the full display name of the target OS.
 # Business name. No special characters or spaces
-export TARGET_BUSINESS_NAME="AnduinOS"
+export TARGET_BUSINESS_NAME="ArcadiaOS"
 
 # Version number. Must be in the format of x.y.z
-export TARGET_BUILD_VERSION="1.3.5"
+export TARGET_BUILD_VERSION="1.0.0"
 
 # Fork version. Must be in the format of x.y
 # By default, it is the branch name of the git repository.
