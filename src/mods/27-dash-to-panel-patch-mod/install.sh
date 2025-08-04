@@ -26,7 +26,7 @@ export const defaults = [\
 judge "Apply new panel layout patch"
 
 # --- Verify success ---
-if ! grep -q "AnduinOS custom default panel layout" "$TARGET_FILE"; then
+if ! grep -q "ArcadiaOS custom default panel layout" "$TARGET_FILE"; then
     echo "[ERROR] Replacement verification failed" >&2
     exit 1
 fi

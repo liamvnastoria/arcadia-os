@@ -1,5 +1,5 @@
 {
-    "uuid": "noti-bottom-right@anduinos",
+    "uuid": "noti-bottom-right@arcadiaos",
     "name": "Notification Bottom Right",
     "description": "Moves notifications to the bottom right corner of the screen.",
     "shell-version": ["45", "46", "47", "48"],

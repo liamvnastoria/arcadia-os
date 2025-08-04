@@ -16,7 +16,7 @@ print_ok "Installing Fluent icon theme"
 )
 judge "Install Fluent icon theme"
 
-#==============================================
+# ==============================================
 
 print_ok "Installing Fluent cursor theme"
 (
